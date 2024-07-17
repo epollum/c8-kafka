@@ -1,0 +1,36 @@
+
+externalAccess:
+  enabled: true
+  controller:
+    service:
+      type: NodePort
+
+  autoDiscovery:
+    enabled: true
+
+serviceAccount:
+  create: true
+
+broker:
+    replicaCount: 0
+    automountServiceAccountToken: true
+controller:
+    replicaCount: 1
+    automountServiceAccountToken: true
+
+provisioning:
+  replicationFactor: 0
+  topics: 
+    - "test-topic"
+
+rbac:
+  create: true
+
+sasl:
+  client:
+    users: ["user1"]
+    passwords: ["abcdef"]
+
+extraConfig: |
+  offsets.topic.replication.factor=1
+  transaction.state.log.replication.factor=1
