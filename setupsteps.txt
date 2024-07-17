@@ -1,5 +1,8 @@
 1. helm install my-release oci://registry-1.docker.io/bitnamicharts/kafka -f values.yaml
-2. Run kafaka-producer-application
-3. Deploy kafka-start-event.bpmn
-3. Trigger the produce at http://localhost:8081/publish/name where {name} is a string, and the content of the Kafka message.
-4. For load testing, use the jmx file provided in Jmeter
+2. Add 127.0.0.1 my-release-kafka-controller-0.my-release-kafka-controller-headless.default.svc.cluster.local to /etc/hosts
+3. kubectl port-forward service/my-release-kafka 9092:9092
+4. kubectl port-forward service/my-release-kafka-controller-0-external 9094:9094
+5. Run kafaka-producer-application
+6. Deploy kafka-start-event.bpmn
+7. Trigger the produce at http://localhost:8081/publish/name where {name} is a string, and the content of the Kafka message.
+8. For load testing, use the jmx file provided in Jmeter
